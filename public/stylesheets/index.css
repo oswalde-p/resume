@@ -6,6 +6,17 @@ h1{
     line-height: 200px;
 }
 
+#intro{
+    height: 100%;
+    background-image: url('/images/background2.jpg');
+    background-position: center;
+    background-size: cover;
+}
+section{
+    position: absolute;
+    top: 100%;
+}
+
 /* mobile */
 @media screen and (max-width: 1000px){
     h1{
