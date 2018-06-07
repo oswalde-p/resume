@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:700');
+
 html{
     height: 100%;
 }
@@ -7,8 +9,7 @@ html{
 }
 
 body {
-    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-    /*background-color: #7c777c; */
+    font: 25px "Lucida Grande", Helvetica, Arial, sans-serif;
     color: white;
     padding: 0;
     margin: 0;
@@ -20,7 +21,22 @@ body {
     overflow: scroll;
 }
 
-.intro{
+h1{
+    font-family: Raleway, sans-serif;
+    font-size: 60px;
 }
+
+section{
+    margin: 115px;
+    margin-top: 180px;
+}
+
+/* mobile */
+@media screen and (max-width: 1000px){
+    body{
+        font-size: 30px;
+    }
+}
+
 
 
