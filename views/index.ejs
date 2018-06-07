@@ -8,12 +8,14 @@
   </head>
   <body>
     <div id="intro">
-      <% include nav.ejs%>
+      <%- include('nav.ejs', {active:""});%>
       <h1><%= title %></h1>
+        <img src="/images/icons/expand-button.png" alt="scroll down for more" id="scrollSignifier">
     </div>
     <section>
       <p>Hi</p>
       <p>I'm Jason</p>
+        <% include footer.ejs %>
     </section>
   </body>
 </html>

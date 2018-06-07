@@ -13,8 +13,10 @@ body {
     color: white;
     padding: 0;
     margin: 0;
-    background-color: rgba(22, 22, 22, 1);
     height: 100%;
+    background-image: url('/images/background2.jpg');
+    background-position: center;
+    background-size: cover;
 }
 
 h1{
@@ -25,6 +27,15 @@ h1{
 section{
     margin: 115px;
     margin-top: 180px;
+    width: auto;
+}
+
+footer{
+    font-size: 10px;
+}
+
+a{
+    color: white;
 }
 
 /* mobile */

@@ -6,7 +6,7 @@
       <link rel='stylesheet' href='/stylesheets/nav.css' />
   </head>
   <body>
-    <% include nav.ejs %>
+    <%-  include('./nav.ejs', {active: "about"});%>
       <section>
         <h1>About Me</h1>
         <p>I like tinkering with things and thinking about how they
