@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index')
+var indexRouter = require('./routes/index');
 
 var app = express();
 
@@ -37,7 +37,7 @@ app.use(function(err, req, res, next) {
 });
 
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, function(){
     console.log("Server started on port " + PORT);

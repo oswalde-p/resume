@@ -1,19 +1,29 @@
 nav{
-    background-color: coral;
     height: 50px;
     margin: 0;
+    font-size: 30px;
 }
 nav a {
     color: white;
     text-decoration: none;
 }
 
-nav ul{
+nav a:hover{
+    color: rgba(255,255,255,.8);
+}
 
+nav ul{
+    margin: 0;
+    margin-right: 50px;
+    text-align: right;
 }
 
 nav li{
     display: inline-block;
+    margin-top: 20px;
+    padding-left: 20px;
+}
+
+nav .logoLink{
     float: left;
-    width: 80px;
 }
