@@ -5,17 +5,25 @@
       <link rel='stylesheet' href='/stylesheets/style.css' />
       <link rel='stylesheet' href='/stylesheets/nav.css' />
       <link rel='stylesheet' href='/stylesheets/index.css' />
+      <script src="/javascripts/index.js" type="text/javascript" ></script>
   </head>
   <body>
     <div id="intro">
       <%- include('nav.ejs', {active:""});%>
       <h1><%= title %></h1>
-        <img src="/images/icons/expand-button.png" alt="scroll down for more" id="scrollSignifier">
+      <a href="#content" title="go to content">
+          <img src="/images/icons/expand-button.png"
+           alt="scroll down for more" id="scrollSignifier"/>
+      </a>
     </div>
-    <section>
-      <p>Hi</p>
-      <p>I'm Jason</p>
-        <% include footer.ejs %>
-    </section>
+    <div id="content">
+      <section>
+          <p>Hi</p>
+          <p>I'm Jason</p>
+          <p>I like tinkering with things</p>
+          <p>And thinking about how they could be better</p>
+      </section>
+      <% include footer.ejs %>
+    </div>
   </body>
 </html>
