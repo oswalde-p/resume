@@ -4,13 +4,39 @@
     <title>About Me | Jason Pursey</title>
       <link rel='stylesheet' href='/stylesheets/style.css' />
       <link rel='stylesheet' href='/stylesheets/nav.css' />
+      <link rel='stylesheet' href='/stylesheets/footer.css' />
   </head>
   <body>
     <%-  include('./nav.ejs', {active: "about"});%>
       <section>
-        <h1>About Me</h1>
-        <p>I like tinkering with things and thinking about how they
-          could be better.</p>
+          <h1>About Me</h1>
+          <p>
+              I live in Melbourne. Whenever I can I leave town on my bike, or go for a walk
+              somewhere nice. Occasionally I go other places too.
+          </p>
+
+          <div class="gallery">
+              <img src="/images/about/bike_road.jpg" width="500">
+              <img src="/images/about/bike_camping.jpg" width="500">
+              <img src="/images/about/me_hamburg_warehouse.jpg" width="500">
+          </div>
+          <p>
+              Animals are great. Oswald sometimes helps with work.
+          </p>
+
+          <div class="gallery">
+              <img src="/images/about/ozzy_helping.jpg" width="500">
+              <img src="/images/about/me_dog_romania1.jpg" width="500">
+              <img src="/images/about/me_dog_romania2.jpg" width="500">
+              <img src="/images/about/me_ozzy.jpg" width="500">
+          </div>
+
+          <p>
+              I have a Graduate Diploma in Computer Science. I'd like to work in user experience
+              design or software engineering.
+          </p>
       </section>
+
+    <%- include footer.ejs%>
   </body>
 </html>

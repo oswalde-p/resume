@@ -1,6 +1,3 @@
-body{
-    background: rgba(22, 22, 22, 0.8);
-}
 
 h1{
     font-size: 200px;
@@ -19,28 +16,21 @@ h1{
 
 #intro{
     height: 100%;
-    background-image: url('/images/background2.jpg');
-    background-position: center;
-    background-size: cover;
 }
 
 #content{
-    position: absolute;
-    top: 100%;
-    width: 100%;
-    margin: 0;
-
+    font: 100px Libre Baskerville, serif;
 }
 section{
-    margin: 0;
-    padding-left: 30px;
-    padding-top: 30px;
+    margin: 40px;
     min-height: 300px;
+    line-height: 200px;
 }
 
 #scrollSignifier{
     position: absolute;
     bottom: 1%;
     left: 50%;
+    cursor: pointer;
 }
 

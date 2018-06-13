@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Libre+Baskerville|Raleway:700');
 
 html{
-    height: 101%;
+    height: 100%;
     width: 100%;
 }
 
@@ -19,6 +19,7 @@ body {
     background-image:  url('/images/background2.jpg');
     background-position: center;
     background-size: cover;
+    background-attachment: fixed;
 }
 
 h1{
@@ -27,7 +28,8 @@ h1{
 }
 
 section{
-    margin: 200px auto auto 100px;
+    margin: 200px 100px 100px;
+    min-height: 100%;
 }
 
 a{
@@ -35,18 +37,6 @@ a{
     text-decoration: none;
 }
 
-
-footer{
-    font-size: 13px;
-    height: 70px;
-    background: rgba(109, 109, 109, 0.8);
-    text-align: center;
-    padding-top: 20px;
-}
-
-footer a{
-    text-decoration: underline;
-}
 
 /* mobile */
 @media screen and (max-width: 1000px){
