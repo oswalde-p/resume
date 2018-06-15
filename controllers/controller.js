@@ -11,3 +11,11 @@ module.exports.loadContact = function(req, res){
     res.render('contact', {});
 };
 
+module.exports.loadProjects = function(req, res){
+    res.render('projects', {});
+};
+
+module.exports.loadJobs = function(req, res){
+    res.render('jobs', {});
+};
+

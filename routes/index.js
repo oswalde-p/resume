@@ -6,5 +6,7 @@ var router = express.Router();
 router.get('/', controller.loadHome);
 router.get('/about', controller.loadAbout);
 router.get('/contact', controller.loadContact);
+router.get('/jobs', controller.loadJobs);
+router.get('/projects', controller.loadProjects);
 
 module.exports = router;
