@@ -1,0 +1,24 @@
+OVERALL
+    Style
+        - change body font
+        - chrome mobile footer <small> size
+        -
+    Backend
+        - create db
+
+HOME
+    - increase arrow visibility
+
+ABOUT
+    - content layout (image position)
+
+
+PROJECTS
+    - start this page
+
+JOBS
+    - start this page
+
+CONTACT
+    - add something else here...
+    - rethink layout
