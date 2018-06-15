@@ -4,6 +4,12 @@ nav{
     font-size: 30px;
     font-family: Raleway, sans-serif;
 }
+
+@media screen and (max-width: 1000px){
+    nav{
+        font-size: 35px;
+    }
+}
 nav a {
     color: white;
     text-decoration: none;
