@@ -1,12 +1,16 @@
-var express = require('express');
-var controller = require('../controllers/controller');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-/* GET home page. */
-router.get('/', controller.loadHome);
-router.get('/about', controller.loadAbout);
-router.get('/contact', controller.loadContact);
-router.get('/jobs', controller.loadJobs);
-router.get('/projects', controller.loadProjects);
+const pageController = require('../controllers/controller');
+const dbController = require('../controllers/mlabController');
+
+/* GET each page. */
+router.get('/', pageController.loadHome);
+router.get('/about', pageController.loadAbout);
+router.get('/contact', pageController.loadContact);
+router.get('/jobs', pageController.loadJobs);
+router.get('/projects', pageController.loadProjects);
+
+router.post('/addJob', dbController.addJob);
 
 module.exports = router;
