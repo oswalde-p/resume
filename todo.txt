@@ -1,5 +1,5 @@
 OVERALL
-    - Create heroku (or github pages?) app
+    - Create heroku app
     Style
         - change body font
         - chrome mobile footer <small> size
@@ -8,14 +8,17 @@ OVERALL
         - create db
 
 HOME
-    - increase arrow visibility
+    - increase arrow visibility (keyframes animation)
 
 ABOUT
-    - content layout (image position)
+    - content layout (image position- grid?)
+    - add headshot
 
 
 PROJECTS
     - reconsider name of this page??
+    - some form of pretty graph representation
+    - "view all" button
 
 JOBS
     - start this page
