@@ -17,12 +17,12 @@ ABOUT
 
 
 PROJECTS
+    - start this page
     - reconsider name of this page??
-    - some form of pretty graph representation
-    - "view all" button
 
 JOBS
-    - start this page
+    - some form of pretty graph representation
+    - "view all" button
 
 CONTACT
     - add something else here...
