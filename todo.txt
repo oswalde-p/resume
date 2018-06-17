@@ -13,6 +13,7 @@ HOME
 ABOUT
     - content layout (image position- grid?)
     - add headshot
+    - resize (and host externally) images
 
 
 PROJECTS
