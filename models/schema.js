@@ -7,7 +7,7 @@ const projectSchema = mongoose.Schema({
     "tags": [String],
     "description": [String],
     "updates": [{
-        "date": Date,
+        "date": String,
         "content": [String],
         "imageUrls": [String]
     }]
@@ -18,8 +18,8 @@ const jobSchema = mongoose.Schema({
     "orgUrl": String,
     "role": String,
     "relevance": Number, // score out of 10
-    "start": Date,
-    "end": Date,
+    "start": String, //"dd-mm-yyyy"
+    "end": String,
     "comment": String
 });
 

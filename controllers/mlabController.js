@@ -13,3 +13,13 @@ module.exports.addJob = function(req, res){
         }
     });
 };
+
+module.exports.getAllJobs = function(req, res){
+    Job.find(function(err, jobs){
+        if (!err){
+            res.send(jobs);
+        }else{
+            res.sendStatus(404);
+        }
+    });
+};

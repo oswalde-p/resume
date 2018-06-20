@@ -12,5 +12,6 @@ router.get('/jobs', pageController.loadJobs);
 router.get('/projects', pageController.loadProjects);
 
 router.post('/addJob', dbController.addJob);
+router.get('/getAllJobs', dbController.getAllJobs);
 
 module.exports = router;

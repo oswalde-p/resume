@@ -25,11 +25,14 @@ body {
 h1{
     font-family: Raleway, sans-serif;
     font-size: 120px;
+    margin: 50px auto;
 }
 
 section{
     margin: 200px 100px 100px;
     min-height: 100%;
+    width: 70%;
+    margin: 0 auto;
 }
 
 a{

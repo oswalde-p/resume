@@ -1,5 +1,5 @@
 nav{
-    height: 50px;
+    min-height: 50px;
     margin: 0;
     font-size: 30px;
     font-family: Raleway, sans-serif;
