@@ -3,23 +3,25 @@
 
 window.onload = showFirstNode;
 
+var description = "This is a brand new problem, a problem without any clues. "+
+    " if you know all the clues, its easy to get through. But you look confused."+
+    " like you don't know what to do. It's hard to get an answer if you haven't got "+
+    " a clue";
 var nodes = [
-    {i: 0, label: "Super awesome node", neighbours:[1,2], size:10, order: 1},
-    {i: 1, label: "Less awesome node", neighbours:[0], size:5, order: 2},
-    {i: 2, label: "Ok node", neighbours:[0,3, 4, 5], size: 3, order: 2},
-    {i: 3, label: "Pretty good node", neighbours:[2], size: 7, order: 3},
-    {i: 4, label: "Pretty good node", neighbours:[2], size: 6, order: 4},
-    {i: 5, label: "Pretty good node", neighbours:[2], size: 6, order: 3}
+    {i: 0, label: "Super awesome node", neighbours:[1,2], size:10, order: 1, description: description},
+    {i: 1, label: "Less awesome node", neighbours:[0,6], size:5, order: 2, description: description},
+    {i: 2, label: "Ok node", neighbours:[0,3, 4, 5], size: 3, order: 2, description: description},
+    {i: 3, label: "Pretty good node", neighbours:[2], size: 7, order: 3, description: description},
+    {i: 4, label: "Pretty good node", neighbours:[2], size: 6, order: 4, description: description},
+    {i: 5, label: "Pretty good node", neighbours:[2], size: 6, order: 3, description: description},
+    {i: 6, label: "Pretty good node", neighbours:[1], size: 6, order: 3, description: description}
 
 ];
 
 var filledSpots = [];
 
 var expanded = [];
-var canvasWidth = 1000;
-var canvasHeight = 900;
-
-var nextPos = {x: canvasWidth/2, y: canvasHeight/2};
+var visible = [];
 
 function showFirstNode(){
     console.log(checkNodes(nodes));
@@ -30,20 +32,40 @@ function showFirstNode(){
 
 
 function showNode(id){
-    if(id in expanded){
+    console.log(visible);
+    if(visible.includes(id)){
         return;
     }
-    expanded.push(id);
-  var canvas = document.getElementById("canvas");
+    visible.push(id);
   var node = nodes[id];
   var sizeStr = (node.size*5).toString();
-  var circle = d3.select("#canvas").append("circle")
+  var g = d3.select("#canvas").append("g")
+      .attr("transform", "translate("+node.x+","+node.y+")");
+
+  var circle = g.append("circle")
       .attr("r", sizeStr)
-      .attr("cx", node.x.toString())
-      .attr("cy", node.y.toString())
+      .attr("cx", 0)
+      .attr("cy", 0)
       .attr("onclick", "showNeighbours("+id+")")
       .attr("id", id.toString())
       .attr("class", "unexpanded ");
+
+  var offset = Number(circle.attr("r")) + 10;
+  var label = g.append("text")
+      .attr("dx", offset)
+      .attr("dy", ".35em")
+      .text(node.label)
+      .attr("id", "label"+id);
+
+  var textWidth = document.getElementById("label"+id).getComputedTextLength();
+  console.log(textWidth);
+  g.append("text")
+      .text("+")
+      .attr("dx", (textWidth+ offset + 10).toString())
+      .attr("dy", ".35em")
+      .attr("class", "moreInfo ")
+      .attr("onclick", "showMore(" + id + ")");
+
 }
 
 function updateNextPos(){
@@ -55,11 +77,12 @@ function showNeighbours(id){
     $("#"+id).prop('onclick',null);
     for(var i=0; i < nodes[id].neighbours.length; i++){
 
-        if(nodes[id].neighbours[i] in expanded){
+
+        var newNode = nodes[nodes[id].neighbours[i]];
+        if(visible.includes(nodes[id].neighbours[i])){
+            addLine(nodes[id], newNode);
             continue;
         }
-        var newNode = nodes[nodes[id].neighbours[i]];
-
         setPos(newNode, nodes[id]);
         addLine(nodes[id], newNode);
         showNode(nodes[id].neighbours[i]);
@@ -67,7 +90,6 @@ function showNeighbours(id){
 }
 
 function addLine(start, end){
-    console.log(end);
     var line = d3.select("#canvas").append("line")
         .attr("x1", start.x)
         .attr("y1", start.y)
@@ -75,20 +97,49 @@ function addLine(start, end){
         .attr("y2", end.y);
 }
 
-/*
-function setPos(node, parent){
-    // random placement
-    node.x = getRandom(0+50, canvasWidth - 50);
-    node.y = getRandom(0+50, canvasHeight - 50);
+function showMore(id){
 
+   /* var text =  d3.select("#canvas").append("text")
+        .attr("dx", nodes[id].x)
+        .attr("dy", nodes[id].y)
+        .text(nodes[id].description)
+        .attr("class", "infoWindow "); */
+   var div = document.createElement("div");
+   div.className += "infoWindow ";
+
+   var h2 = document.createElement("h2");
+   h2.innerHTML = nodes[id].label;
+   div.appendChild(h2);
+
+   var p = document.createElement("p");
+   p.innerHTML = nodes[id].description;
+   div.appendChild(p);
+
+   var btn = document.createElement("input");
+   btn.setAttribute("id", "closeBtn");
+   btn.setAttribute("type", "button");
+   btn.setAttribute("value", "Close");
+   btn.setAttribute("onclick", "closeWindow()");
+
+    div.appendChild(btn);
+   document.body.appendChild(div);
 }
-*/
 
+function closeWindow(){
+    console.log("closing info window");
+ var windows = document.getElementsByClassName("infoWindow");
+ for(var i=0; i< windows.length; i++){
+     windows[i].parentNode.removeChild(windows[i]);
+ }
+}
 function setPos(node, parent){
     // ordered
     var padding = 100;
     var spread = 150;
     var range = getRange(nodes);
+
+    var canvasWidth = $("#canvas").width();
+    var canvasHeight = $("#canvas").height();
 
     var dy = (canvasHeight - 2*padding)/range;
     var spacing = Math.min(dy, spread);
@@ -107,8 +158,6 @@ function setPos(node, parent){
 }
 
 function checkTaken(x, y, filledSpots, spacing){
-    console.log(filledSpots);
-    console.log("x: " + x + ", y: " + y);
     for (var i = 0; i < filledSpots.length; i++){
         if ((filledSpots[i].x >= x - spacing && filledSpots[i].x <= x + spacing) &&
             (filledSpots[i].y >= y - spacing && filledSpots[i].y <= y + spacing)){
@@ -133,48 +182,6 @@ function getRange(nodes){
     return max-min + 1;
 }
 
-/*
-function setPos(node, parent){
-    // radial attempt
-    if (parent == null){
-        // first node
-        node.x = canvasWidth/2;
-        node.y = canvasHeight/2;
-        return
-    }
-    var buffer = 70;
-
-
-    var dx = 100 + getRandom(-50,50);
-    var dy = 100;
-
-    // children of first node go random direction
-    if ((parent.x < canvasWidth/2 + buffer) &&
-        (parent.x > canvasWidth/2 - buffer)) {
-        if(Math.random() > 0.5) {
-            dx *= -1;
-        }
-    }else if (parent.x < canvasWidth/2){
-        // other nodes go out radially
-        dx *= -1;
-    }
-    if ((parent.y < canvasHeight/2 + buffer) &&
-        (parent.x > canvasHeight/2 - buffer)) {
-        if(Math.random() > 0.5) {
-            dy *= -1;
-        }
-    }else if (parent.y < canvasWidth/2){
-        dy *= -1;
-    }
-
-
-
-
-    node.x = parent.x + dx;
-    node.y = parent.y + dy;
-
-}
-*/
 
 function getRandom(min, max){
     return Math.floor(Math.random()*(max-min + 1) + min);
