@@ -1,7 +1,7 @@
 const RADIUS_SCALE = 5;
 const TEXT_PADDING = 10;
 var CIRCLE_PADDING = 100;
-var CIRCLE_SPREAD = 250;
+var CIRCLE_SPREAD = 150;
 var nodes;
 var visible = [];
 var filledSpots = [];
@@ -15,17 +15,30 @@ window.onload = function(){
     }).done(function(jobs) {
         if (!jobs) {
         }else{
-            console.log(jobs);
 
             // make nodes
             nodes = makeNodes(jobs);
-            console.log(nodes);
             // show the first one
-            setPos(nodes[0], null);
-            showNode(0);
+            var firstIx = findFirst(nodes);
+            setPos(nodes[firstIx], null);
+            showNode(firstIx);
         }
     });
 };
+
+function findFirst(nodes){
+    var minOrder = 100000;
+    var minIx = -1;
+    for (var i=0; i < nodes.length; i++){
+        if (nodes[i].order < minOrder){
+            minOrder = nodes[i].order;
+            minIx = i;
+
+        }
+    }
+    console.log(minIx);
+    return minIx;
+}
 
 function makeNodes(jobs){
     var nodes = [];
@@ -35,11 +48,14 @@ function makeNodes(jobs){
         newNode.label = job.role + ", " + job.organisation;
         newNode.size = job.relevance;
         newNode.description = job.comment;
+        newNode.neighbours = [];
         nodes.push(newNode);
     }
 
+
     setNeighbours(jobs, nodes);
     setOrders(jobs, nodes);
+    console.log(nodes);
     return nodes;
 }
 
@@ -49,11 +65,24 @@ function makeNodes(jobs){
  * @param nodes
  */
 function setNeighbours(jobs, nodes){
-    //TODO: write this method properly
-    nodes[0].neighbours = [];
-    for(var i=1; i < nodes.length; i++){
-        nodes[i].neighbours = [0];
-        nodes[0].neighbours.push(i);
+
+    // get array of all nicknames
+    var nicks = [];
+    for(var i=0; i < jobs.length; i++){
+        nicks.push(jobs[i].nick);
+    }
+    console.log(nicks);
+    // use index of related nicknames to set neighbours
+
+    for(i=1; i < jobs.length; i++){
+        var job = jobs[i];
+        for (var j=0; j<job.related.length; j++){
+            var neighbIx = nicks.indexOf(job.related[j]);
+            if (neighbIx >= 0) {
+                nodes[i].neighbours.push(neighbIx);
+                nodes[neighbIx].neighbours.push(i);
+            }
+        }
     }
 }
 
@@ -68,12 +97,14 @@ function setOrders(jobs, nodes){
         return;
     }
 
-    // TODO: Do this better
+    const today = new Date();
     for (var i=0; i< jobs.length; i++){
         var order;
         var job = jobs[i];
-        var year = job.end.substr(-4);
-        order = 2018 - parseInt(year);
+        var endDate = new Date(job.end);
+
+        var diff = today.getTime() - endDate.getTime(); // mS
+        order = Math.floor(diff/(1000*60*60*24*30));
         nodes[i].order = order;
     }
 
@@ -185,7 +216,6 @@ function showMore(id){
  * close ALL popup info windows
  */
 function closeWindow(){
-    console.log("closing info window");
     var windows = document.getElementsByClassName("infoWindow");
     for(var i=0; i< windows.length; i++){
         windows[i].parentNode.removeChild(windows[i]);
@@ -200,14 +230,16 @@ function closeWindow(){
  */
 function setPos(node, parent){
     // ordered
-    var range = getRange(nodes);
+    var r = getRange(nodes);
+    var range = r[0];
+    var min = r[1];
 
     var canvasWidth = $("#canvas").width();
     var canvasHeight = $("#canvas").height();
 
     var dy = (canvasHeight - 2*CIRCLE_PADDING)/range;
     var spacing = Math.min(dy, CIRCLE_SPREAD);
-    var y = node.order*dy + CIRCLE_PADDING;
+    var y = (node.order-min)*dy + CIRCLE_PADDING;
 
     var x = canvasWidth/2;
     if(parent != null){
@@ -219,7 +251,6 @@ function setPos(node, parent){
     filledSpots.push({x:x, y: y});
     node.x = x;
     node.y = y;
-    console.log(node.x + ", " + node.y);
 }
 
 /**
@@ -257,7 +288,7 @@ function getRange(nodes){
             min = o;
         }
     }
-    return max-min + 1;
+    return [max-min + 1, min];
 }
 
 /**

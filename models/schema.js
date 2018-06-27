@@ -14,15 +14,16 @@ const projectSchema = mongoose.Schema({
 });
 
 const jobSchema = mongoose.Schema({
+    "nick": String,
     "organisation": String,
     "orgUrl": String,
     "role": String,
     "relevance": Number, // score out of 10
-    "start": String, //"dd-mm-yyyy"
+    "start": String, //"yyyy-mm-dd"
     "end": String,
-    "comment": String
+    "comment": String,
+    "related": [String]
 });
 
 mongoose.model('jobs', jobSchema);
 mongoose.model('projects', projectSchema);
-console.log("Schema should be registered...");
