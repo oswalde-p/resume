@@ -1,7 +1,7 @@
 const RADIUS_SCALE = 5;
 const TEXT_PADDING = 10;
-var CIRCLE_PADDING = 100;
-var CIRCLE_SPREAD = 150;
+var CIRCLE_PADDING = 50;
+var CIRCLE_SPREAD = 100;
 var nodes;
 var visible = [];
 var filledSpots = [];
@@ -238,12 +238,16 @@ function setPos(node, parent){
     var canvasHeight = $("#canvas").height();
 
     var dy = (canvasHeight - 2*CIRCLE_PADDING)/range;
-    var spacing = Math.min(dy, CIRCLE_SPREAD);
+    var spacing = CIRCLE_SPREAD/2;
     var y = (node.order-min)*dy + CIRCLE_PADDING;
 
     var x = canvasWidth/2;
     if(parent != null){
-        x = parent.x - CIRCLE_SPREAD;
+        var dx = CIRCLE_SPREAD;
+        if(Math.random() > 0.49){
+            dx *= -1
+        }
+        x = parent.x + dx;
     }
     while (checkTaken(x, y, filledSpots, spacing)) {
         x += CIRCLE_SPREAD;
