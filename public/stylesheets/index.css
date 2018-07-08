@@ -33,14 +33,14 @@ section{
     left: 50%;
     cursor: pointer;
     animation-name: bounce;
-    animation-duration: 2s;
+    animation-duration: 1.5s;
     animation-iteration-count: infinite;
 }
 
 
 @keyframes bounce {
     0% {transform: translateY(0)}
-    20% {transform: translateY(-1em)}
+    20% {transform: translateY(-2em)}
     100% {transform: translateY(0)}
 }
 

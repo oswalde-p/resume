@@ -2,6 +2,7 @@ const RADIUS_SCALE = 5;
 const TEXT_PADDING = 10;
 var CIRCLE_PADDING = 50;
 var CIRCLE_SPREAD = 100;
+var SPACING = 120;
 var nodes;
 var visible = [];
 var filledSpots = [];
@@ -238,7 +239,7 @@ function setPos(node, parent){
     var canvasHeight = $("#canvas").height();
 
     var dy = (canvasHeight - 2*CIRCLE_PADDING)/range;
-    var spacing = CIRCLE_SPREAD/2;
+    var spacing = SPACING;
     var y = (node.order-min)*dy + CIRCLE_PADDING;
 
     var x = canvasWidth/2;
