@@ -4,6 +4,7 @@ h1{
     width: 500px;
     margin: 15% auto auto 10%;
     line-height: 200px;
+    border-bottom: none;
 }
 
 /* mobile */

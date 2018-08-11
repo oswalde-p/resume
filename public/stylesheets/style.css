@@ -26,6 +26,9 @@ h1{
     font-family: Raleway, sans-serif;
     font-size: 120px;
     margin: 50px auto;
+    border-bottom: 2px solid white;
+    padding-bottom: 10px;
+    padding-top: 100px;
 }
 
 section{

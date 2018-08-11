@@ -1,13 +1,12 @@
 section{
+}
+
+#aboutContent{
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-column-gap: 20px;
     grid-row-gap: 40px;
-}
 
-section *{
-    margin-top:auto;
-    margin-bottom: auto;
 }
 
 h1{
