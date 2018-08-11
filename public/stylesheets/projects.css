@@ -1,0 +1,56 @@
+
+
+#allTags{
+    width: 60%;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#allTags li{
+    margin-top: 5px;
+}
+
+.projectContainer{
+    border-top: 1px solid #d4d4d4;
+    margin-top: 150px;
+    padding-top: 100px;
+}
+
+
+h2{
+
+    font-family: Raleway, sans-serif;
+}
+
+.tagList, .links{
+    padding-left: 0;
+}
+.tagList li{
+    list-style-type: none;
+    display: inline-block;
+    border-radius: 15px;
+    background-color: #d4d4d4;
+    font-size: smaller;
+    padding: 5px 15px 5px 15px;
+}
+
+.tagList li:hover{
+    background-color: #9c9c9c;
+}
+
+.tagList a{
+    color: #282828;
+}
+
+.links li{
+    list-style-type: none;
+}
+
+.links li a{
+    text-decoration: underline;
+}
+
+img{
+    float: right;
+}
