@@ -1,28 +1,27 @@
 OVERALL
-    - Create heroku app
+    - find host for images
     Style
-        - change body font
         - chrome mobile footer <small> size
         -
-    Backend
-        - create db
 
 HOME
-    - increase arrow visibility (keyframes animation)
+    -
 
 ABOUT
     - content layout (image position- grid?)
     - add headshot
-    - resize (and host externally) images
+    - resize images
+    - write about myself
 
 
 PROJECTS
-    - start this page
-    - reconsider name of this page??
+    - add more projects to db
+    - load projects from db on page
 
 JOBS
-    - some form of pretty graph representation
-    - "view all" button
+    - adjust graph layout to keep text within boundaries
+    - Simple view page
+    - add more jobs to db
 
 CONTACT
     - add something else here...

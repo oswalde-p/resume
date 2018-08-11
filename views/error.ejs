@@ -1,2 +1,13 @@
-<h1><%= message %></h1>
-<h2><%= error.status %></h2>
+
+<link rel='stylesheet' href='/stylesheets/style.css' />
+<link rel='stylesheet' href='/stylesheets/nav.css' />
+<link rel='stylesheet' href='/stylesheets/footer.css' />
+
+<%-  include('./nav.ejs', {active: null});%>
+
+<section>
+<h1><%= error.status %> <%= message %></h1>
+<h2> :( </h2>
+</section>
+
+<%- include footer.ejs%>
