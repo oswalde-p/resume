@@ -7,7 +7,6 @@
       <link rel='stylesheet' href='/stylesheets/projects.css' />
       <link rel='stylesheet' href='/stylesheets/nav.css' />
       <link rel='stylesheet' href='/stylesheets/footer.css' />
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
   <body>
     <%-  include('./nav.ejs', {active: "projects"});%>
@@ -29,115 +28,35 @@
               <li><a href="/projects?tag=Express">OOP</a></li>
 
           </ul>
-          <div class="projectContainer">
-              <h2>Resume website</h2>
-              <ul class="tagList">
-                  <li><a href="/projects?tag=HTML5">HTML5</a></li>
-                  <li><a href="/projects?tag=CSS3">CSS3</a></li>
-                  <li><a href="/projects?tag=JS6">JS6</a></li>
-                  <li><a href="/projects?tag=NodeJS">NodeJS</a></li>
-                  <li><a href="/projects?tag=Express">Express</a></li>
-              </ul>
-              <ul class="links">
-                  <li>Source:
-                      <a href="https://www.github.com/oswalde-p/resume">github.com/oswalde-p/resume</a>
-                  </li>
-                  <li>Live site:
-                      <a href="herokuapp.com">herokuapp.com</a>
-                  </li>
-              </ul>
-              <p>
-                  A simple website built with Node to show some of my projects
-              </p>
-          </div>
 
-          <div class="projectContainer">
-              <h2>Resume website</h2>
-              <ul class="tagList">
-                  <li><a href="/projects?tag=HTML5">HTML5</a></li>
-                  <li><a href="/projects?tag=CSS3">CSS3</a></li>
-                  <li><a href="/projects?tag=JS6">JS6</a></li>
-                  <li><a href="/projects?tag=NodeJS">NodeJS</a></li>
-                  <li><a href="/projects?tag=Express">Express</a></li>
-              </ul>
-              <ul class="links">
-                  <li>Source:
-                      <a href="https://www.github.com/oswalde-p/resume">github.com/oswalde-p/resume</a>
-                  </li>
-                  <li>Live site:
-                      <a href="herokuapp.com">herokuapp.com</a>
-                  </li>
-              </ul>
-              <p>
-                  A simple website built with Node to show some of my projects
-              </p>
-          </div>
+          <%
+          for(let i=0; i<projects.length; i++){
+              var p = projects[i];
+              %>
+              <div class="projectContainer">
+                  <h2><%= p.title %></h2>
+                  <ul class="tagList">
+                      <% for(var j=0; j<p.tags.length; j++){
+                          %>
+                      <li><a href="/projects?tag=<%=p.tags[j]%>"> <%= p.tags[j] %> </a></li>
+                      <%
+                      }%>
+                  </ul>
+                  <ul class="links">
+                      <% for(var j=0; j<p.links.length; j++) {
+                      %>
+                      <li><%= p.links[j].description %>:
+                          <a href="<%=p.links[j].url%>" target="_blank"> <%= p.links[j].url %> </a></li>
+                      <%
+                      }%>
+                  </ul>
 
-          <div class="projectContainer">
-              <h2>Resume website</h2>
-              <ul class="tagList">
-                  <li><a href="/projects?tag=HTML5">HTML5</a></li>
-                  <li><a href="/projects?tag=CSS3">CSS3</a></li>
-                  <li><a href="/projects?tag=JS6">JS6</a></li>
-                  <li><a href="/projects?tag=NodeJS">NodeJS</a></li>
-                  <li><a href="/projects?tag=Express">Express</a></li>
-              </ul>
-              <ul class="links">
-                  <li>Source:
-                      <a href="https://www.github.com/oswalde-p/resume">github.com/oswalde-p/resume</a>
-                  </li>
-                  <li>Live site:
-                      <a href="herokuapp.com">herokuapp.com</a>
-                  </li>
-              </ul>
-              <p>
-                  A simple website built with Node to show some of my projects
-              </p>
-          </div>
-
-          <div class="projectContainer">
-              <h2>Resume website</h2>
-              <ul class="tagList">
-                  <li><a href="/projects?tag=HTML5">HTML5</a></li>
-                  <li><a href="/projects?tag=CSS3">CSS3</a></li>
-                  <li><a href="/projects?tag=JS6">JS6</a></li>
-                  <li><a href="/projects?tag=NodeJS">NodeJS</a></li>
-                  <li><a href="/projects?tag=Express">Express</a></li>
-              </ul>
-              <ul class="links">
-                  <li>Source:
-                      <a href="https://www.github.com/oswalde-p/resume">github.com/oswalde-p/resume</a>
-                  </li>
-                  <li>Live site:
-                      <a href="herokuapp.com">herokuapp.com</a>
-                  </li>
-              </ul>
-              <p>
-                  A simple website built with Node to show some of my projects
-              </p>
-          </div>
-
-          <div class="projectContainer">
-              <h2>Resume website</h2>
-              <ul class="tagList">
-                  <li><a href="/projects?tag=HTML5">HTML5</a></li>
-                  <li><a href="/projects?tag=CSS3">CSS3</a></li>
-                  <li><a href="/projects?tag=JS6">JS6</a></li>
-                  <li><a href="/projects?tag=NodeJS">NodeJS</a></li>
-                  <li><a href="/projects?tag=Express">Express</a></li>
-              </ul>
-              <ul class="links">
-                  <li>Source:
-                      <a href="https://www.github.com/oswalde-p/resume">github.com/oswalde-p/resume</a>
-                  </li>
-                  <li>Live site:
-                      <a href="herokuapp.com">herokuapp.com</a>
-                  </li>
-              </ul>
-              <p>
-                  A simple website built with Node to show some of my projects
-              </p>
-          </div>
+                  <p>
+                      <%= p.description %>
+                  </p>
+              </div>
+                  <%
+          }%>
 
       </section>
 

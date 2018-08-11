@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Job = mongoose.model('jobs');
 var Project = mongoose.model('projects');
+module.exports.Project = Project;
 
 module.exports.addJob = function(req, res){
     console.log(req.body);
@@ -38,12 +39,12 @@ module.exports.addProject = function(req, res){
     });
 };
 
-module.exports.getAllProjects = function(req, res){
+module.exports.getAllProjects = function(){
     Project.find(function(err, projects){
         if(!err){
-            res.send(projects);
+            return(projects);
         }else{
-            res.sendStatus(404);
+            return null;
         }
     });
 };

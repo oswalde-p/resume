@@ -16,7 +16,8 @@ ABOUT
 
 PROJECTS
     - add more projects to db
-    - load projects from db on page
+    - implement filtering for tags
+    - populate "all tags" dynamically
 
 JOBS
     - adjust graph layout to keep text within boundaries
