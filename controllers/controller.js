@@ -12,7 +12,9 @@ module.exports.loadContact = function(req, res){
 };
 
 module.exports.loadProjects = function(req, res){
-    res.render('projects', {});
+    const tag = req.query.tag;
+    console.log(tag);
+    res.render('projects', {tag: tag});
 };
 
 module.exports.loadJobs = function(req, res){

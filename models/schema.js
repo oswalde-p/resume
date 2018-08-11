@@ -1,16 +1,14 @@
 var mongoose = require('mongoose');
 
 const projectSchema = mongoose.Schema({
-    "name":String,
-    "url": String,
-    "imageUrl": String,
+    "title":String,
+    "links" : [{
+        "description": String,
+        "url": String}],
+    "imageUrls": [String],
     "tags": [String],
     "description": [String],
-    "updates": [{
-        "date": String,
-        "content": [String],
-        "imageUrls": [String]
-    }]
+    "lastUpdated": Date
 });
 
 const jobSchema = mongoose.Schema({
