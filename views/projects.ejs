@@ -13,18 +13,11 @@
   <script type="text/javascript">
 
       window.onload = function (ev) {
-          var active = document.head.querySelector("[name=activeTag]").content;
-          populateAllTags(active);
-          hideInactive(active);
-
-          if (active != ""){
-              showClearButton();
-          }else{
-              hideClearButton();
-          }
+          populateAllTags();
+          hideClearButton();
       }
 
-      function populateAllTags(active){
+      function populateAllTags(){
           var allTagsArray = [];
           var tag;
           var lists = document.getElementsByClassName("tagList");
@@ -37,21 +30,17 @@
                   }
               }
           }
-            console.log(allTagsArray);
+
           var allTags = document.getElementById("allTags");
 
           for(i=0; i<allTagsArray.length; i++){
               tag = allTagsArray[i];
 
               var li = document.createElement("li");
-              var a = document.createElement("a");
-              a.href = "/projects?tag="+tag;
-              a.innerHTML = tag;
 
-              if(tag === active + " "){
-                  li.className += " active";
-              }
-              li.appendChild(a);
+              li.setAttribute("onclick", "hideInactive('"+tag+"')");
+              li.innerHTML = tag;
+
               allTags.appendChild(li);
           }
       }
@@ -66,37 +55,67 @@
                   divs[i].style.display = "none";
               }
           }
+
+          var allTags = document.getElementById("allTags").getElementsByTagName("li");
+          for (i=0; i<allTags.length; i++){
+              if(allTags[i].innerHTML === tag){
+                  allTags[i].className += " active";
+              }else{
+                  allTags[i].classList.remove("active");
+              }
+          }
+
+          showClearButton();
       }
 
       function getTags(projectContainer){
-          var tags_a = projectContainer.getElementsByClassName("tagList")[0].getElementsByTagName("a");
+          var tagsListItems = projectContainer.getElementsByClassName("tagList")[0].getElementsByTagName("li");
           var tags = [];
-          for(var j=0; j<tags_a.length; j++){
-              tags += tags_a[j].innerHTML;
+          for(var j=0; j<tagsListItems.length; j++){
+              tags += tagsListItems[j].innerHTML;
           }
           return tags;
       }
 
       function getTagLiContent(li){
-          return li.getElementsByTagName("a")[0].innerHTML;
+          return li.innerHTML;
       }
 
       function showClearButton() {
-            document.getElementById("clearFilters").style.display = "inline block";
+            document.getElementById("clearFilters").style.display = "inline-block";
       }
 
       function hideClearButton() {
           document.getElementById("clearFilters").style.display = "none";
 
       }
+
+      function stripActive(){
+          var tags = document.getElementById("allTags").getElementsByTagName("li");
+          for(var i=0; i<tags.length; i++){
+              tags[i].classList.remove("active");
+          }
+      }
+
+      function clearFilters(){
+          var projects = document.getElementsByClassName("projectContainer");
+          for (var i=0; i<projects.length; i++){
+              projects[i].style.display = "block";
+          }
+
+          hideClearButton();
+          stripActive();
+      }
   </script>
   <body>
     <%-  include('./nav.ejs', {active: "projects"});%>
       <section>
           <h1>Projects</h1>
-          <ul id="allTags" class="tagList">
-          </ul>
-          <a id="clearFilters" href="/projects">X Clear all</a>
+          <div id="tagSection">
+              <ul id="allTags" class="tagList">
+              </ul>
+              <span id="clearFilters" onclick="clearFilters()">Show all</span>
+          </div>
           <%
           for(let i=0; i<projects.length; i++){
               var p = projects[i];
@@ -106,22 +125,23 @@
                   <ul class="tagList">
                       <% for(var j=0; j<p.tags.length; j++){
                           %>
-                      <li><a href="/projects?tag=<%=p.tags[j]%>"> <%= p.tags[j] %> </a></li>
+                      <li onclick="hideInactive('<%= p.tags[j] %>') "><%= p.tags[j] %></li>
                       <%
                       }%>
                   </ul>
-                  <ul class="links">
-                      <% for(var j=0; j<p.links.length; j++) {
-                      %>
-                      <li><%= p.links[j].description %>:
-                          <a href="<%=p.links[j].url%>" target="_blank"> <%= p.links[j].url %> </a></li>
-                      <%
-                      }%>
-                  </ul>
-
-                  <p>
-                      <%= p.description %>
-                  </p>
+                  <div class="projectContent">
+                      <p>
+                          <%= p.description %>
+                      </p>
+                      <ul class="links">
+                          <% for(var j=0; j<p.links.length; j++) {
+                          %>
+                          <li><%= p.links[j].description %>:
+                              <a href="<%=p.links[j].url%>" target="_blank"> <%= p.links[j].url %> </a></li>
+                          <%
+                          }%>
+                      </ul>
+                  </div>
               </div>
                   <%
           }%>
