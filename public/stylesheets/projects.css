@@ -26,7 +26,7 @@ h2{
 .tagList, .links{
     padding-left: 0;
 }
-.tagList li{
+.tagList li, #clearFilters{
     list-style-type: none;
     display: inline-block;
     border-radius: 15px;
@@ -35,12 +35,23 @@ h2{
     padding: 5px 15px 5px 15px;
 }
 
-.tagList li:hover{
+.tagList li:hover, #clearFilters:hover{
     background-color: #9c9c9c;
 }
 
-.tagList a{
+.tagList .active{
+    background-color: #9c9c9c;
+}
+
+.tagList li a, #clearFilters{
     color: #282828;
+}
+
+#clearFilters{
+    display: inline-block;
+    width: fit-content;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .links li{

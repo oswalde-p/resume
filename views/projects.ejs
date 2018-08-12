@@ -7,28 +7,96 @@
       <link rel='stylesheet' href='/stylesheets/projects.css' />
       <link rel='stylesheet' href='/stylesheets/nav.css' />
       <link rel='stylesheet' href='/stylesheets/footer.css' />
+
+      <meta name="activeTag" content="<%=activeTag%>" />
   </head>
+  <script type="text/javascript">
+
+      window.onload = function (ev) {
+          var active = document.head.querySelector("[name=activeTag]").content;
+          populateAllTags(active);
+          hideInactive(active);
+
+          if (active != ""){
+              showClearButton();
+          }else{
+              hideClearButton();
+          }
+      }
+
+      function populateAllTags(active){
+          var allTagsArray = [];
+          var tag;
+          var lists = document.getElementsByClassName("tagList");
+          for(var i=0; i<lists.length; i++){
+              var listItems = lists[i].getElementsByTagName("li");
+              for(var j=0; j<listItems.length; j++){
+                  tag = getTagLiContent(listItems[j]);
+                  if(!allTagsArray.includes(tag)){
+                      allTagsArray.push(tag);
+                  }
+              }
+          }
+            console.log(allTagsArray);
+          var allTags = document.getElementById("allTags");
+
+          for(i=0; i<allTagsArray.length; i++){
+              tag = allTagsArray[i];
+
+              var li = document.createElement("li");
+              var a = document.createElement("a");
+              a.href = "/projects?tag="+tag;
+              a.innerHTML = tag;
+
+              if(tag === active + " "){
+                  li.className += " active";
+              }
+              li.appendChild(a);
+              allTags.appendChild(li);
+          }
+      }
+
+      function hideInactive(tag){
+          var divs = document.getElementsByClassName("projectContainer");
+          for(var i=0; i<divs.length; i++){
+              var tags = getTags(divs[i]);
+              if(tags.includes(tag)){
+                  divs[i].style.display = "block";
+              }else{
+                  divs[i].style.display = "none";
+              }
+          }
+      }
+
+      function getTags(projectContainer){
+          var tags_a = projectContainer.getElementsByClassName("tagList")[0].getElementsByTagName("a");
+          var tags = [];
+          for(var j=0; j<tags_a.length; j++){
+              tags += tags_a[j].innerHTML;
+          }
+          return tags;
+      }
+
+      function getTagLiContent(li){
+          return li.getElementsByTagName("a")[0].innerHTML;
+      }
+
+      function showClearButton() {
+            document.getElementById("clearFilters").style.display = "inline block";
+      }
+
+      function hideClearButton() {
+          document.getElementById("clearFilters").style.display = "none";
+
+      }
+  </script>
   <body>
     <%-  include('./nav.ejs', {active: "projects"});%>
       <section>
           <h1>Projects</h1>
           <ul id="allTags" class="tagList">
-              <li><a href="/projects?tag=HTML5">HTML5</a></li>
-              <li><a href="/projects?tag=CSS3">Java</a></li>
-              <li><a href="/projects?tag=JS6">AI</a></li>
-              <li><a href="/projects?tag=NodeJS">NodeJS</a></li>
-              <li><a href="/projects?tag=Express">Python</a></li>
-              <li><a href="/projects?tag=HTML5">HTML5</a></li>
-              <li><a href="/projects?tag=CSS3">Data</a></li>
-              <li><a href="/projects?tag=JS6">JS6</a></li>
-              <li><a href="/projects?tag=NodeJS">Usability</a></li>
-              <li><a href="/projects?tag=Express">UX</a></li>
-              <li><a href="/projects?tag=Express">Machine learning</a></li>
-              <li><a href="/projects?tag=Express">Design patterns</a></li>
-              <li><a href="/projects?tag=Express">OOP</a></li>
-
           </ul>
-
+          <a id="clearFilters" href="/projects">X Clear all</a>
           <%
           for(let i=0; i<projects.length; i++){
               var p = projects[i];
