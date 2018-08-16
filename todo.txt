@@ -17,8 +17,7 @@ ABOUT
 
 PROJECTS
     - add more projects to db
-    - centre clear all button
-    - background for projectContainer
+    - sort by date
 
 JOBS
     - adjust graph layout to keep text within boundaries
