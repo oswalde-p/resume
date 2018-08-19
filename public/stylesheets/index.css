@@ -9,10 +9,6 @@ h1{
 
 /* mobile */
 @media screen and (max-width: 1000px){
-    h1{
-        margin: 50% auto auto 10%;
-
-    }
 }
 
 #intro{
