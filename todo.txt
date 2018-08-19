@@ -1,5 +1,5 @@
 OVERALL
-    - find host for images
+    -
     Style
         - chrome mobile footer <small> size
         - mobile tag text larger, section width greater

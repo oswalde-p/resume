@@ -16,7 +16,7 @@ body {
     margin: 0;
     height: 100%;
     background: rgba(22, 22, 22, 0.8);
-    background-image:  url('/images/background2.jpg');
+    background-image:  url('https://i.imgur.com/lrjKyrV.jpg');
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
