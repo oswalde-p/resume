@@ -36,7 +36,6 @@ module.exports.loadJobsSimple = function(req, res){
     var Job = dbController.Job;
     Job.find(function(err, jobs){
         if(!err){
-            console.log(jobs);
             res.render('jobsSimple', {activeTag: tag, jobs: jobs.sort(function(a,b){
                 return(a.end > b.end) ? -1 : 1;
                 })});
