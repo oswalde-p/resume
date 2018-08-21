@@ -15,6 +15,7 @@ const jobSchema = mongoose.Schema({
     "nick": String,
     "organisation": String,
     "orgUrl": String,
+    "tags": [String],
     "role": String,
     "relevance": Number, // score out of 10
     "start": String, //"yyyy-mm-dd"

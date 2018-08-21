@@ -45,9 +45,6 @@ a{
 
 /* mobile */
 @media screen and (max-width: 1000px){
-    body{
-        font-size: 20px;
-    }
 
     section{
         width: 90%;

@@ -15,12 +15,12 @@ ABOUT
 
 PROJECTS
     - add more projects to db
-    - sort by date
 
 JOBS
-    - adjust graph layout to keep text within boundaries
-    - Simple view page
     - add more jobs to db
+    - adjust graph layout to keep text within boundaries
+    - calculate connections based on similarity (tags)
+
 
 CONTACT
     - add something else here...

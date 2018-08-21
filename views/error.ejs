@@ -6,8 +6,11 @@
 <%-  include('./nav.ejs', {active: null});%>
 
 <section>
-<h1><%= error.status %> <%= message %></h1>
-<h2> :( </h2>
+    <h1>Error </h1>
+    <h2> <%= message %> :(</h2>
+    <p>
+        <%= error.status %>
+    </p>
 </section>
 
 <%- include footer.ejs%>

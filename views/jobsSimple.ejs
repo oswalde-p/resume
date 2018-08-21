@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jobs | Jason Pursey</title>
+    <%- include meta.ejs %>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/nav.css' />
+    <link rel='stylesheet' href='/stylesheets/footer.css' />
+    <link rel='stylesheet' href='/stylesheets/tags.css' />
+
+    <script type="text/javascript" src='/javascripts/tagFilters.js'></script>
+
+</head>
+<body>
+<%-  include('./nav.ejs', {active: "jobs"}); %>
+<%
+ function roughDateString(date){
+     var options = {year: 'numeric', month: 'short'};
+     var d = new Date(date);
+     return d.toLocaleDateString("en-AU", options);
+ }
+ %>
+<section>
+    <h1>Job History</h1>
+    <a href="/jobs"  id="viewToggle">Graph view</a>
+    <div id="tagSection">
+        <ul id="allTags" class="tagList">
+        </ul>
+        <span id="clearFilters" onclick="clearFilters()">Show all</span>
+    </div>
+    <%
+    for(let i=0; i<jobs.length; i++){
+        var p = jobs[i];
+    %>
+    <div class="projectContainer">
+        <h2><%= p.role %></h2>
+        <h3>
+            <% if (p.orgUrl !== ""){ %>
+                <a href = "<%= p.orgUrl %>" target="_blank">
+                <%= p.organisation %></a>
+            <% }else{ %>
+                <%= p.organisation %>
+            <% } %>
+        </h3>
+
+        <p class="startEndDate"> <%= roughDateString(p.start) %> - <%= roughDateString(p.end) %></p>
+
+        <ul class="tagList">
+            <% if(p.tags.length !== null) {%>
+                <% for(var j=0; j<p.tags.length; j++){
+                %>
+                <li onclick="hideInactive('<%= p.tags[j] %>') "><%= p.tags[j] %></li>
+                <%
+                }%>
+            <% } %>
+        </ul>
+        <div class="projectContent">
+            <p>
+                <%= p.comment %>
+            </p>
+            <ul class="links">
+                <li>
+                    <a href="<%=p.link%>" target="_blank"> <%= p.link %> </a></li>
+            </ul>
+        </div>
+    </div>
+    <%
+    }%>
+
+</section>
+
+<%- include footer.ejs%>
+</body>
+</html>

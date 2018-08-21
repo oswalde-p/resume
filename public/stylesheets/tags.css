@@ -42,6 +42,8 @@ h2{
     font-size: smaller;
     padding: 5px 15px 5px 15px;
     cursor: pointer;
+    margin-left: 2px;
+    margin-right: 2px;
 }
 
 /* mobile */
@@ -50,9 +52,13 @@ h2{
         font-size: inherit;
     }
 }
-
 .tagList li:hover, #clearFilters:hover, .tagList .active{
-    background-color: #9c9c9c;
+    background-color: #808080;
+}
+
+.tagList .active{
+    background-color: #3e3e3e;
+    color: white;
 }
 
 .links{
@@ -60,7 +66,7 @@ h2{
 }
 .links li{
     list-style-type: none;
-    height: 40px;
+    padding-top: 20px;
 }
 
 .links li a{

@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var Job = mongoose.model('jobs');
 var Project = mongoose.model('projects');
 module.exports.Project = Project;
+module.exports.Job = Job;
 
 module.exports.addJob = function(req, res){
     console.log(req.body);
@@ -49,6 +50,11 @@ module.exports.getAllProjects = function(){
     });
 };
 
+/**
+ * unused as of 21/08
+ * @param req
+ * @param res
+ */
 module.exports.getProjectsWithTag = function(req, res){
   const searchTag = req.query.tag;
     console.log(searchTag);
