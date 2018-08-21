@@ -36,12 +36,19 @@ h2{
 .tagList li, #clearFilters{
     list-style-type: none;
     display: inline-block;
-    border-radius: 15px;
+    border-radius: 20px;
     background-color: #d4d4d4;
     color: #282828;
     font-size: smaller;
     padding: 5px 15px 5px 15px;
     cursor: pointer;
+}
+
+/* mobile */
+@media screen and (max-width: 1000px){
+    .tagList li, #clearFilters{
+        font-size: inherit;
+    }
 }
 
 .tagList li:hover, #clearFilters:hover, .tagList .active{

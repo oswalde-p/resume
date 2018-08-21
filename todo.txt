@@ -2,7 +2,6 @@ OVERALL
     -
     Style
         - chrome mobile footer <small> size
-        - mobile tag text larger, section width greater
         - mobile size background to avoid gap after scrolling
 
 HOME
