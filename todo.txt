@@ -1,7 +1,6 @@
 OVERALL
-    -
+    - add twitter to footer
     Style
-        - chrome mobile footer <small> size
         - mobile size background to avoid gap after scrolling
 
 HOME
@@ -25,4 +24,5 @@ JOBS
 
 CONTACT
     - add something else here...
+    - add twitter logo
     - rethink layout
